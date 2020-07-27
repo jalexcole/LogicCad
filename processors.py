@@ -1,13 +1,13 @@
-import Logic.py
+import Logic
 
-class Mos6502:
-    def __init__(self, opcode):
-        self.opcode = opcode
+class MOS6502:
+    def __init__(self):
+        self.opcode = None
         # Input and Ouput
         self.address = 0x0000
         self.data = 0x00
-        self.bus_enable = False
-        self.interupt_request = False
+        self.bus_enable = True
+        self.interupt_request = None
         self.memory_lock = False
         self.nonmaskable_interupt = False
         self.phi2 = False
@@ -15,7 +15,7 @@ class Mos6502:
         self.phi10 = False
         self.no_connect = None
         self.rwb = True # Read/Write if True data is read, if False data is written
-        self.ready = True
+        self.ready = None
         self.reset = False
         self.set_overflow = False
         self.sync = False # SYNChronize with OpCode fetch
@@ -44,7 +44,7 @@ class Mos6502:
 
     # Load and Store operations
     def lda(self):
-        """Load Accumulator with memmory """
+        """Load Accumulator with memmory"""
         self.rwb = True
         self.accumulator = self.data
         self.negative = True
@@ -84,7 +84,7 @@ class Mos6502:
         new_accumulator = self.accumulator + self.data + self.carry
         self.negative = False
         if new_accumulator < self.accumulator:
-            set_overflow = True
+            self.set_overflow = True
             self.carry = True
         if new_accumulator == self.accumulator:
             self.zero = True
