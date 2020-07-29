@@ -19,12 +19,13 @@ class Register:
     def __init__(self, size):
         self.size = size
         self.type = "Gerneral"
+        self.value = None
     
     def read(self):
-        pass
+        return self.value
     
-    def write(self):
-        pass
+    def write(self, new_value):
+        self.value = new_value
 
 class Bus:
     def __init__(self, length):
@@ -32,13 +33,13 @@ class Bus:
         self.value = hex(2 ** self.length * 0)
 
     def read(self):
-        pass
+        return self.value
+
     def write(self):
         pass
 
     def overflow_check(self):
-        while self.value > hex(2 ** self.length):
-            self.value - hex(2 ** self.length + 1)
+        self.value %= s ** self.length
 
 class Rom(Memory):
     def __init__(self):
@@ -50,6 +51,19 @@ class LogicChip:
         self.size = None
 
 class Alu:
-    def __init__(self):
+    def __init__(self, condition):
         pass
+
+class mathcoprocessor:
+    def __init__(self)
+        pass
+
+class Cpu:
+    def __init__(self, address_length, data_length):
+        self.accumulator = Register()
+    
+    def cache(self, size):
+        pass
+
+
     
