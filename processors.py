@@ -229,3 +229,19 @@ class MOS6502:
         """No Operation"""
         pass
 
+class Z80:
+    def __init__(self):
+        self.data = 0x00
+        self.address = 0x0000
+        self.dataspace = 2 ** 8
+        self.address_space = 2 ** 16
+
+        # Registers
+        self.accumulator = Logic.register(8)
+        self.bc = [Logic.register(8),Logic.register(8)]
+
+
+        # Flags
+        #TODO log all of the flag conditions
+
+    def run_instruction(self, instruction, value)
